@@ -113,6 +113,22 @@ And here is the result of these calculations: the 5-minute interval, on average
 across all the days in the dataset, that contains the maximum number of steps
 is **the `r whichMaxStepsPerInterval` interval**.
 
+It appears to be exact:
+
+```{r checkAverageDailyActivityPlot}
+plot(names(meanStepsPerInterval),
+     meanStepsPerInterval,
+     type = "l",
+     xlab = "5-minute intervals",
+     ylab = "Average number of steps taken",
+     main = "Average number of steps taken per interval")
+
+abline(v = 835,
+       col = "blue",
+       lty = 2,
+       lwd = 2)
+```
+
 ## Imputing missing values
 
 1. First of all, I calculated the total number of missing values in the dataset (i.e. the total number of rows with `NA`s).

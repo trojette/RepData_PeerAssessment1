@@ -141,6 +141,25 @@ And here is the result of these calculations: the 5-minute interval, on average
 across all the days in the dataset, that contains the maximum number of steps
 is **the 835 interval**.
 
+It appears to be exact:
+
+
+```r
+plot(names(meanStepsPerInterval),
+     meanStepsPerInterval,
+     type = "l",
+     xlab = "5-minute intervals",
+     ylab = "Average number of steps taken",
+     main = "Average number of steps taken per interval")
+
+abline(v = 835,
+       col = "blue",
+       lty = 2,
+       lwd = 2)
+```
+
+![plot of chunk checkAverageDailyActivityPlot](figure/checkAverageDailyActivityPlot.png) 
+
 ## Imputing missing values
 
 1. First of all, I calculated the total number of missing values in the dataset (i.e. the total number of rows with `NA`s).
@@ -316,7 +335,7 @@ niceTable(comparisonTable)
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 22:37:28 2014 -->
+<!-- Sun Aug 17 22:53:11 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Old </TH> <TH> New </TH> <TH> Difference (new - old) </TH>  </TR>
   <TR> <TD align="right"> Mean </TD> <TD align="right"> 9354.23 </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 1411.96 </TD> </TR>
