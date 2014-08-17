@@ -137,12 +137,32 @@ whichMaxStepsPerInterval
 ## [1] "835"
 ```
 
+```r
+maxMeanStepsPerInterval <- max(meanStepsPerInterval)
+maxMeanStepsPerInterval
+```
+
+```
+## [1] 206.2
+```
+
 And here is the result of these calculations: the 5-minute interval, on average
 across all the days in the dataset, that contains the maximum number of steps
 is **the 835 interval**.
 
+**This maximum is 206.1698**.
+
 It appears to be exact:
 
+
+```r
+meanStepsPerInterval[as.character(whichMaxStepsPerInterval)] == maxMeanStepsPerInterval
+```
+
+```
+##  835 
+## TRUE
+```
 
 ```r
 plot(names(meanStepsPerInterval),
@@ -150,9 +170,14 @@ plot(names(meanStepsPerInterval),
      type = "l",
      xlab = "5-minute intervals",
      ylab = "Average number of steps taken",
-     main = "Average number of steps taken per interval")
+     main = "Maximum average number of steps taken per interval")
 
-abline(v = 835,
+abline(v = whichMaxStepsPerInterval,
+       col = "blue",
+       lty = 2,
+       lwd = 2)
+
+abline(h = maxMeanStepsPerInterval,
        col = "blue",
        lty = 2,
        lwd = 2)
@@ -258,6 +283,19 @@ summary(newActivity)
 newActivityPerDate <- split(newActivity$steps, newActivity$date)
 newTotalStepsPerDate <- sapply(newActivityPerDate, sum, na.rm = TRUE)
 
+## Draw the new histogram without highlighting the differences
+barplot(newTotalStepsPerDate,
+        xlab = "New total number of steps",
+        ylab = "Days",
+        main = "New total number of steps taken each day")
+```
+
+![plot of chunk newTotalNumberStepsPerDayHist](figure/newTotalNumberStepsPerDayHist.png) 
+
+I wanted to highlight the differences.
+
+
+```r
 ## Draw the new histogram highlighting the differences
 barplot(totalStepsPerDate,
         xlab = "New total number of steps taken each day",
@@ -271,15 +309,7 @@ barplot(newTotalStepsPerDate - totalStepsPerDate,
         ylim = range(totalStepsPerDate))
 ```
 
-![plot of chunk newTotalNumberStepsPerDayHist](figure/newTotalNumberStepsPerDayHist.png) 
-
-```r
-## We could also drawn the new histogram without highlighting
-# barplot(newTotalStepsPerDate,
-#         xlab = "New total number of steps",
-#         ylab = "Days",
-#         main = "New total number of steps taken each day")
-```
+![plot of chunk newTotalNumberStepsPerDayHighlightedHist](figure/newTotalNumberStepsPerDayHighlightedHist.png) 
 
 b) I calculated the new mean and median total number of steps taken per day.
 
@@ -335,7 +365,7 @@ niceTable(comparisonTable)
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 22:53:11 2014 -->
+<!-- Sun Aug 17 23:03:13 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Old </TH> <TH> New </TH> <TH> Difference (new - old) </TH>  </TR>
   <TR> <TD align="right"> Mean </TD> <TD align="right"> 9354.23 </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 1411.96 </TD> </TR>
