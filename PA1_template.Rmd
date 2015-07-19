@@ -62,6 +62,15 @@ meanStepsPerInterval <- sapply(activityPerInterval, mean, na.rm = TRUE)
 1. First I made a histogram of the total number of steps taken each day.
 
 ```{r totalNumberStepsPerDayHist}
+hist(totalStepsPerDate,
+        xlab = "Total number of steps",
+        ylab = "Days",
+        main = "Total number of steps taken each day")
+```
+
+Even if it was not part of the assignment, I also wanted to see a barplot of this data.
+
+```{r totalNumberStepsPerDayBarPlot}
 barplot(totalStepsPerDate,
         xlab = "Total number of steps",
         ylab = "Days",
@@ -200,16 +209,26 @@ newActivityPerDate <- split(newActivity$steps, newActivity$date)
 newTotalStepsPerDate <- sapply(newActivityPerDate, sum, na.rm = TRUE)
 
 ## Draw the new histogram without highlighting the differences
+hist(newTotalStepsPerDate,
+     xlab = "New total number of steps",
+     ylab = "Days",
+     main = "New total number of steps taken each day")
+```
+
+As in the beginning, I believe it is clearer with a barplot (not asked in the assignment). Therefore, below is what it shows.
+
+```{r newTotalNumberStepsPerDayBarplot}
+## Draw the new barplot without highlighting the differences
 barplot(newTotalStepsPerDate,
         xlab = "New total number of steps",
         ylab = "Days",
         main = "New total number of steps taken each day")
 ```
 
-I wanted to highlight the differences.
+I also wanted to highlight the differences.
 
-```{r newTotalNumberStepsPerDayHighlightedHist}
-## Draw the new histogram highlighting the differences
+```{r newTotalNumberStepsPerDayHighlightedBarplot}
+## Draw the new barplot highlighting the differences
 barplot(totalStepsPerDate,
         xlab = "New total number of steps taken each day",
         ylab = "Days",

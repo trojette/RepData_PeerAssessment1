@@ -365,7 +365,7 @@ niceTable(comparisonTable)
 ```
 
 <!-- html table generated in R 3.1.1 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:03:13 2014 -->
+<!-- Sun Aug 17 23:29:21 2014 -->
 <TABLE border=1>
 <TR> <TH>  </TH> <TH> Old </TH> <TH> New </TH> <TH> Difference (new - old) </TH>  </TR>
   <TR> <TD align="right"> Mean </TD> <TD align="right"> 9354.23 </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 1411.96 </TD> </TR>
