@@ -69,13 +69,25 @@ meanStepsPerInterval <- sapply(activityPerInterval, mean, na.rm = TRUE)
 
 
 ```r
+hist(totalStepsPerDate,
+        xlab = "Total number of steps",
+        ylab = "Days",
+        main = "Total number of steps taken each day")
+```
+
+![plot of chunk totalNumberStepsPerDayHist](figure/totalNumberStepsPerDayHist-1.png) 
+
+Even if it was not part of the assignment, I also wanted to see a barplot of this data.
+
+
+```r
 barplot(totalStepsPerDate,
         xlab = "Total number of steps",
         ylab = "Days",
         main = "Total number of steps taken each day")
 ```
 
-![plot of chunk totalNumberStepsPerDayHist](figure/totalNumberStepsPerDayHist.png) 
+![plot of chunk totalNumberStepsPerDayBarPlot](figure/totalNumberStepsPerDayBarPlot-1.png) 
 
 2. Then I calculated the mean and median total number of steps taken per day.
 
@@ -86,7 +98,7 @@ meanTotalStepsPerDate
 ```
 
 ```
-## [1] 9354
+## [1] 9354.23
 ```
 
 ```r
@@ -101,7 +113,7 @@ medianTotalStepsPerDate
 So the results of these calculations were that:
 
 - the **mean** total number of steps taken per day is
-  **9354.2295**;
+  **9354.2295082**;
 
 - the **median** total number of steps taken per day is
   **10395**.
@@ -122,7 +134,7 @@ plot(names(meanStepsPerInterval),
      main = "Average number of steps taken per interval")
 ```
 
-![plot of chunk averageDailyActivityPlot](figure/averageDailyActivityPlot.png) 
+![plot of chunk averageDailyActivityPlot](figure/averageDailyActivityPlot-1.png) 
 
 2. Then I calculated the 5-minute interval, on average across all the days in
 the dataset, that contains the maximum number of steps.
@@ -143,14 +155,14 @@ maxMeanStepsPerInterval
 ```
 
 ```
-## [1] 206.2
+## [1] 206.1698
 ```
 
 And here is the result of these calculations: the 5-minute interval, on average
 across all the days in the dataset, that contains the maximum number of steps
 is **the 835 interval**.
 
-**This maximum is 206.1698**.
+**This maximum is 206.1698113**.
 
 It appears to be exact:
 
@@ -183,7 +195,7 @@ abline(h = maxMeanStepsPerInterval,
        lwd = 2)
 ```
 
-![plot of chunk checkAverageDailyActivityPlot](figure/checkAverageDailyActivityPlot.png) 
+![plot of chunk checkAverageDailyActivityPlot](figure/checkAverageDailyActivityPlot-1.png) 
 
 ## Imputing missing values
 
@@ -229,7 +241,7 @@ getMeanForInterval(5)
 ```
 
 ```
-## [1] 0.3396
+## [1] 0.3396226
 ```
 
 ```r
@@ -237,7 +249,7 @@ getMeanForInterval(835)
 ```
 
 ```
-## [1] 206.2
+## [1] 206.1698
 ```
 
 ```r
@@ -245,7 +257,7 @@ getMeanForInterval(1200)
 ```
 
 ```
-## [1] 63.87
+## [1] 63.86792
 ```
 
 3. Afterwards I created a new dataset that is equal to the original dataset but
@@ -265,14 +277,14 @@ summary(newActivity)
 ```
 
 ```
-##      steps               date          interval   
-##  Min.   :  0.0   2012-10-01:  288   Min.   :   0  
-##  1st Qu.:  0.0   2012-10-02:  288   1st Qu.: 589  
-##  Median :  0.0   2012-10-03:  288   Median :1178  
-##  Mean   : 37.4   2012-10-04:  288   Mean   :1178  
-##  3rd Qu.: 27.0   2012-10-05:  288   3rd Qu.:1766  
-##  Max.   :806.0   2012-10-06:  288   Max.   :2355  
-##                  (Other)   :15840
+##      steps                date          interval     
+##  Min.   :  0.00   2012-10-01:  288   Min.   :   0.0  
+##  1st Qu.:  0.00   2012-10-02:  288   1st Qu.: 588.8  
+##  Median :  0.00   2012-10-03:  288   Median :1177.5  
+##  Mean   : 37.38   2012-10-04:  288   Mean   :1177.5  
+##  3rd Qu.: 27.00   2012-10-05:  288   3rd Qu.:1766.2  
+##  Max.   :806.00   2012-10-06:  288   Max.   :2355.0  
+##                   (Other)   :15840
 ```
 
 4. a) I made a histogram of the total number of steps taken each day
@@ -284,19 +296,32 @@ newActivityPerDate <- split(newActivity$steps, newActivity$date)
 newTotalStepsPerDate <- sapply(newActivityPerDate, sum, na.rm = TRUE)
 
 ## Draw the new histogram without highlighting the differences
+hist(newTotalStepsPerDate,
+     xlab = "New total number of steps",
+     ylab = "Days",
+     main = "New total number of steps taken each day")
+```
+
+![plot of chunk newTotalNumberStepsPerDayHist](figure/newTotalNumberStepsPerDayHist-1.png) 
+
+As in the beginning, I believe it is clearer with a barplot (not asked in the assignment). Therefore, below is what it shows.
+
+
+```r
+## Draw the new barplot without highlighting the differences
 barplot(newTotalStepsPerDate,
         xlab = "New total number of steps",
         ylab = "Days",
         main = "New total number of steps taken each day")
 ```
 
-![plot of chunk newTotalNumberStepsPerDayHist](figure/newTotalNumberStepsPerDayHist.png) 
+![plot of chunk newTotalNumberStepsPerDayBarplot](figure/newTotalNumberStepsPerDayBarplot-1.png) 
 
-I wanted to highlight the differences.
+I also wanted to highlight the differences.
 
 
 ```r
-## Draw the new histogram highlighting the differences
+## Draw the new barplot highlighting the differences
 barplot(totalStepsPerDate,
         xlab = "New total number of steps taken each day",
         ylab = "Days",
@@ -309,7 +334,7 @@ barplot(newTotalStepsPerDate - totalStepsPerDate,
         ylim = range(totalStepsPerDate))
 ```
 
-![plot of chunk newTotalNumberStepsPerDayHighlightedHist](figure/newTotalNumberStepsPerDayHighlightedHist.png) 
+![plot of chunk newTotalNumberStepsPerDayHighlightedBarplot](figure/newTotalNumberStepsPerDayHighlightedBarplot-1.png) 
 
 b) I calculated the new mean and median total number of steps taken per day.
 
@@ -320,7 +345,7 @@ newMeanTotalStepsPerDate
 ```
 
 ```
-## [1] 10766
+## [1] 10766.19
 ```
 
 ```r
@@ -329,16 +354,16 @@ newMedianTotalStepsPerDate
 ```
 
 ```
-## [1] 10766
+## [1] 10766.19
 ```
 
 c) The results of these calculations were that:
 
 - the **new mean** total number of steps taken per day is
-  **1.0766 &times; 10<sup>4</sup>**;
+  **1.0766189 &times; 10<sup>4</sup>**;
 
 - and the **new median** total number of steps taken per day is
-  **1.0766 &times; 10<sup>4</sup>**.
+  **1.0766189 &times; 10<sup>4</sup>**.
 
 d) I wondered whether these values differed from the estimates from the first
 part of the assignment.
@@ -364,13 +389,13 @@ comparisonTable <- matrix(c(meanTotalStepsPerDate,
 niceTable(comparisonTable)
 ```
 
-<!-- html table generated in R 3.1.1 by xtable 1.7-3 package -->
-<!-- Sun Aug 17 23:29:21 2014 -->
-<TABLE border=1>
-<TR> <TH>  </TH> <TH> Old </TH> <TH> New </TH> <TH> Difference (new - old) </TH>  </TR>
-  <TR> <TD align="right"> Mean </TD> <TD align="right"> 9354.23 </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 1411.96 </TD> </TR>
-  <TR> <TD align="right"> Median </TD> <TD align="right"> 10395.00 </TD> <TD align="right"> 10766.19 </TD> <TD align="right"> 371.19 </TD> </TR>
-   </TABLE>
+<!-- html table generated in R 3.2.1 by xtable 1.7-4 package -->
+<!-- Mon Jul 20 00:18:04 2015 -->
+<table border=1>
+<tr> <th>  </th> <th> Old </th> <th> New </th> <th> Difference (new - old) </th>  </tr>
+  <tr> <td align="right"> Mean </td> <td align="right"> 9354.23 </td> <td align="right"> 10766.19 </td> <td align="right"> 1411.96 </td> </tr>
+  <tr> <td align="right"> Median </td> <td align="right"> 10395.00 </td> <td align="right"> 10766.19 </td> <td align="right"> 371.19 </td> </tr>
+   </table>
 
 So **yes, these values do differ from the estimates from the first part of the
 assignment**.
@@ -465,4 +490,4 @@ xyplot(fullData$steps ~ fullData$interval
        ylab = "Number of steps")
 ```
 
-![plot of chunk finalPlot](figure/finalPlot.png) 
+![plot of chunk finalPlot](figure/finalPlot-1.png) 
