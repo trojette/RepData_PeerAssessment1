@@ -63,9 +63,10 @@ meanStepsPerInterval <- sapply(activityPerInterval, mean, na.rm = TRUE)
 
 ```{r totalNumberStepsPerDayHist}
 hist(totalStepsPerDate,
-        xlab = "Total number of steps",
-        ylab = "Days",
-        main = "Total number of steps taken each day")
+     xlab = "Total number of steps",
+     ylab = "Days",
+     breaks = 20,
+     main = "Total number of steps taken each day")
 ```
 
 Even if it was not part of the assignment, I also wanted to see a barplot of this data.
@@ -212,16 +213,19 @@ newTotalStepsPerDate <- sapply(newActivityPerDate, sum, na.rm = TRUE)
 hist(newTotalStepsPerDate,
      xlab = "New total number of steps",
      ylab = "Days",
+     breaks = 20,
      main = "New total number of steps taken each day")
 ```
 
-As in the beginning, I believe it is clearer with a barplot (not asked in the assignment). Therefore, below is what it shows.
+We clearly see the difference.
+
+A barplot (not asked in the assignment) also shows this difference, but another way.
 
 ```{r newTotalNumberStepsPerDayBarplot}
 ## Draw the new barplot without highlighting the differences
 barplot(newTotalStepsPerDate,
-        xlab = "New total number of steps",
-        ylab = "Days",
+        ylab = "New total number of steps",
+        xlab = "Days",
         main = "New total number of steps taken each day")
 ```
 
@@ -230,8 +234,8 @@ I also wanted to highlight the differences.
 ```{r newTotalNumberStepsPerDayHighlightedBarplot}
 ## Draw the new barplot highlighting the differences
 barplot(totalStepsPerDate,
-        xlab = "New total number of steps taken each day",
-        ylab = "Days",
+        ylab = "New total number of steps taken each day",
+        xlab = "Days",
         ylim = range(totalStepsPerDate))
 
 par(new=TRUE)

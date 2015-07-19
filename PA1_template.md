@@ -70,9 +70,10 @@ meanStepsPerInterval <- sapply(activityPerInterval, mean, na.rm = TRUE)
 
 ```r
 hist(totalStepsPerDate,
-        xlab = "Total number of steps",
-        ylab = "Days",
-        main = "Total number of steps taken each day")
+     xlab = "Total number of steps",
+     ylab = "Days",
+     breaks = 20,
+     main = "Total number of steps taken each day")
 ```
 
 ![plot of chunk totalNumberStepsPerDayHist](figure/totalNumberStepsPerDayHist-1.png) 
@@ -299,19 +300,22 @@ newTotalStepsPerDate <- sapply(newActivityPerDate, sum, na.rm = TRUE)
 hist(newTotalStepsPerDate,
      xlab = "New total number of steps",
      ylab = "Days",
+     breaks = 20,
      main = "New total number of steps taken each day")
 ```
 
 ![plot of chunk newTotalNumberStepsPerDayHist](figure/newTotalNumberStepsPerDayHist-1.png) 
 
-As in the beginning, I believe it is clearer with a barplot (not asked in the assignment). Therefore, below is what it shows.
+We clearly see the difference.
+
+A barplot (not asked in the assignment) also shows this difference, but another way.
 
 
 ```r
 ## Draw the new barplot without highlighting the differences
 barplot(newTotalStepsPerDate,
-        xlab = "New total number of steps",
-        ylab = "Days",
+        ylab = "New total number of steps",
+        xlab = "Days",
         main = "New total number of steps taken each day")
 ```
 
@@ -323,8 +327,8 @@ I also wanted to highlight the differences.
 ```r
 ## Draw the new barplot highlighting the differences
 barplot(totalStepsPerDate,
-        xlab = "New total number of steps taken each day",
-        ylab = "Days",
+        ylab = "New total number of steps taken each day",
+        xlab = "Days",
         ylim = range(totalStepsPerDate))
 
 par(new=TRUE)
@@ -390,7 +394,7 @@ niceTable(comparisonTable)
 ```
 
 <!-- html table generated in R 3.2.1 by xtable 1.7-4 package -->
-<!-- Mon Jul 20 00:20:17 2015 -->
+<!-- Mon Jul 20 00:30:06 2015 -->
 <table border=1>
 <tr> <th>  </th> <th> Old </th> <th> New </th> <th> Difference (new - old) </th>  </tr>
   <tr> <td align="right"> Mean </td> <td align="right"> 9354.23 </td> <td align="right"> 10766.19 </td> <td align="right"> 1411.96 </td> </tr>
